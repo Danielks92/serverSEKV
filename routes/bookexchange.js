@@ -32,8 +32,10 @@ db.open(function(err, db){
 	}
 });
 
-db.authenticate("Daniel", "443273", function(err, res) {
-  // callback
+db.authenticate('Daniel', '443273', function(err, res) {
+  console.log(err);
+  console.log(res);
+  console.log("done");
 });
 
 var minutes = 1, the_interval = minutes * 60 * 1000;
