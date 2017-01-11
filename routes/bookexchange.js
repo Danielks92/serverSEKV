@@ -222,6 +222,7 @@ exports.allUsers = function(req, res){
 				itemsJson = '{"users" : ' + itemsJson + '}';
 				res.status(200).send(itemsJson);
 			}else{
+				console.log(err);
 				res.sendStatus(409);
 			}
 		});
