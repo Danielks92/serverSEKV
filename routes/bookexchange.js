@@ -1,8 +1,8 @@
 /*
  * DB stuff
  */
-var mongo = require('mongodb'),
-	BSON = mongo.BSONPure,
+var mongo = require('mongodb');
+	//BSON = mongo.BSONPure,
 	//Server = mongo.Server,
 	//server = new Server('Daniel:443273@ec2-54-198-223-24.compute-1.amazonaws.com', 27017, {auto_reconnect: true}),
 	//DB = mongo.Db,
