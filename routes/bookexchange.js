@@ -28,7 +28,7 @@ var express   = require('express');
 	var config = {
 		"USER" : "",
 		"PASS" : "",
-		"HOST" : "ec2-54-198-223-24.compute-1.amazonaws.com"
+		"HOST" : "ec2-54-198-223-24.compute-1.amazonaws.com",
 		"PORT" : "27017",
 		"DATABASE" : 'bookbay'
 	};
