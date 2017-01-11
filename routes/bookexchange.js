@@ -159,6 +159,8 @@ exports.logIn = function(req, res){
 	db.collection('users', function(err, collection) {
 		collection.findOne({'username': {$eq: user.username}}, function(err, item){
 			if(item != null){
+				bcrypt.compare(user.password, item.password, function(error, isMatch){
+					if(isMatch){
 				console.log(user.password  + " " + item.password + " ");
 				if(user.password===item.password){
 						collection.update({'username': {$eq: user.username}}, {$set: {'status': 'online'}}, function(err, result){
@@ -167,7 +169,7 @@ exports.logIn = function(req, res){
 					}else{
 						res.sendStatus(404);
 					}
-	
+					});
 			}else{
 				res.sendStatus(404);
 			}
@@ -203,7 +205,9 @@ exports.createUser = function(req, res) {
 		db.collection('users', function(err, collection) {
 	    	collection.findOne({'username': {$eq: user.username}}, function(err, item){		
 	    		if(item == null){
-			      	
+			      	bcrypt.genSalt(10, function(err, salt){
+						bcrypt.hash(user.password, salt, function(err, hash){
+							user.password = hash;
 					        collection.insert({'username': user.username, 'firstName': user.firstName, 'lastName': user.lastName, 'password': user.password, 'email' : user.email}, {safe:true}, function(err, result) {
 					        	if(err){
 					        		res.sendStatus(409);
@@ -211,7 +215,8 @@ exports.createUser = function(req, res) {
 					        		res.sendStatus(201);
 					        	}
 					        });
-				  		
+				  		});
+					});
 	  				
 				}else{
 					res.sendStatus(409);
