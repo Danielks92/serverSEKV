@@ -169,7 +169,8 @@ exports.logIn = function(req, res){
 					}else{
 						res.sendStatus(404);
 					}
-					});
+					}
+				});
 			}else{
 				res.sendStatus(404);
 			}
