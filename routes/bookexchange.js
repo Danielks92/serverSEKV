@@ -3,10 +3,14 @@
  */
 var mongo = require('mongodb'),
 	BSON = mongo.BSONPure,
-	Server = mongo.Server,
-	server = new Server('Daniel:443273@ec2-54-198-223-24.compute-1.amazonaws.com', 27017, {auto_reconnect: true}),
-	DB = mongo.Db,
-	db = new DB('bookbay', server),
+	//Server = mongo.Server,
+	//server = new Server('Daniel:443273@ec2-54-198-223-24.compute-1.amazonaws.com', 27017, {auto_reconnect: true}),
+	//DB = mongo.Db,
+	//db = new DB('bookbay', server),
+	
+	var http      = require('http');
+var mongoose  = require('mongoose');
+var express   = require('express');
 
 	/*
 	 * requiring packet and credentials for mailing
@@ -19,23 +23,38 @@ var mongo = require('mongodb'),
 	 */
 	bcrypt = require('bcrypt-nodejs'),
 	crypto = require('crypto');
- 	
+ 	var app = express();
+	var db;
+	var config = {
+		"USER" : "",
+		"PASS" : "",
+		"HOST" : "ec2-54-198-223-24.compute-1.amazonaws.com"
+		"PORT" : "27017",
+		"DATABASE" : 'bookbay'
+	};
+var dbPath  = "mongodb://"+config.USER + ":"+
+    config.PASS + "@"+
+    config.HOST + ":"+
+    config.PORT + "/"+
+    config.DATABASE;
+	
+	db = mongoose.connect(dbPath);
 	
 /*
  * establishes the db-connection
  */ 
-db.open(function(err, db){
-	if(!err){
+//db.open(function(err, db){
+//	if(!err){
 //		console.log("Connected to 'bookbay' database.");
 //		db.authenticate("Daniel", "443273", function(err, res) {
 //  console.log(err);
 //  console.log(res);
 //  console.log("done");
 //});
-	}else{
-		console.log("Problem connecting to 'bookbay' database.");
-	}
-});
+//	}else{
+//		console.log("Problem connecting to 'bookbay' database.");
+//	}
+//});
 
 
 
