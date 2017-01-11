@@ -27,16 +27,17 @@ var mongo = require('mongodb'),
 db.open(function(err, db){
 	if(!err){
 		console.log("Connected to 'bookbay' database.");
+		db.authenticate('Daniel', '443273', function(err, res) {
+  console.log(err);
+  console.log(res);
+  console.log("done");
+});
 	}else{
 		console.log("Problem connecting to 'bookbay' database.");
 	}
 });
 
-db.authenticate('Daniel', '443273', function(err, res) {
-  console.log(err);
-  console.log(res);
-  console.log("done");
-});
+
 
 var minutes = 1, the_interval = minutes * 60 * 1000;
 setInterval(function() {
