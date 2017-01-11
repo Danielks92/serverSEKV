@@ -151,7 +151,7 @@ exports.updateCurrentPrice = function(req, res) {
  *
  */
 exports.logIn = function(req, res){
-
+console.log("login");
 	var username = req.params.username;
 	var user = req.body;
 	console.log(user.username);
@@ -201,7 +201,7 @@ exports.logIn = function(req, res){
  */
 exports.createUser = function(req, res) {
     var user = req.body;
-
+console.log("create");
     if(user.password === user.password){
 		db.collection('users', function(err, collection) {
 	    	collection.findOne({'username': {$eq: user.username}}, function(err, item){		
