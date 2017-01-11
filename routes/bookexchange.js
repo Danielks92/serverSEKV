@@ -50,7 +50,7 @@ db.open(function(err, db){
   //console.log(err);
   //console.log(res);
   //console.log("done");
-});
+//});
 	}else{
 		console.log("Problem connecting to 'bookbay' database.");
 	}
