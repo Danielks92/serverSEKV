@@ -4,7 +4,7 @@
 var mongo = require('mongodb'),
 	BSON = mongo.BSONPure,
 	Server = mongo.Server,
-	server = new Server('ec2-54-198-223-24.compute-1.amazonaws.com', 27017, {auto_reconnect: true}),
+	server = new Server('Daniel:443273@ec2-54-198-223-24.compute-1.amazonaws.com', 27017, {auto_reconnect: true}),
 	DB = mongo.Db,
 	db = new DB('bookbay', server),
 
@@ -26,11 +26,11 @@ var mongo = require('mongodb'),
  */ 
 db.open(function(err, db){
 	if(!err){
-		console.log("Connected to 'bookbay' database.");
-		db.authenticate('Daniel', '443273', function(err, res) {
-  console.log(err);
-  console.log(res);
-  console.log("done");
+//		console.log("Connected to 'bookbay' database.");
+//		db.authenticate("Daniel", "443273", function(err, res) {
+//  console.log(err);
+//  console.log(res);
+//  console.log("done");
 });
 	}else{
 		console.log("Problem connecting to 'bookbay' database.");
