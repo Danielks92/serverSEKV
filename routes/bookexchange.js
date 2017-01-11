@@ -4,9 +4,9 @@
 var mongo = require('mongodb'),
 	BSON = mongo.BSONPure,
 	Server = mongo.Server,
-	server = new Server('localhost', 27017, {auto_reconnect: true}),
+	server = new Server('ec2-54-198-223-24.compute-1.amazonaws.com', 27017, {auto_reconnect: true}),
 	DB = mongo.Db,
-	db = new DB('bookexchangedb', server),
+	db = new DB('bookbay', server),
 
 	/*
 	 * requiring packet and credentials for mailing
@@ -26,9 +26,9 @@ var mongo = require('mongodb'),
  */ 
 db.open(function(err, db){
 	if(!err){
-		console.log("Connected to 'bookexchangedb' database.");
+		console.log("Connected to 'bookbay' database.");
 	}else{
-		console.log("Problem connecting to 'bookexchangedb' database.");
+		console.log("Problem connecting to 'bookbay' database.");
 	}
 });
 
