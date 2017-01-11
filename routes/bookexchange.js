@@ -159,17 +159,18 @@ console.log("login");
 	db.collection('users', function(err, collection) {
 		collection.findOne({'username': {$eq: user.username}}, function(err, item){
 			if(item != null){
+				console.log(user.password + " " + item.password);
 				bcrypt.compare(user.password, item.password, function(error, isMatch){
 					if(isMatch){
-				console.log(user.password  + " " + item.password + " ");
-				if(user.password===item.password){
+				
+				
 						collection.update({'username': {$eq: user.username}}, {$set: {'status': 'online'}}, function(err, result){
 							res.sendStatus(204);
 						});
 					}else{
 						res.sendStatus(404);
 					}
-					}
+					
 				});
 			}else{
 				res.sendStatus(404);
