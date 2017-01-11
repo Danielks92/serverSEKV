@@ -32,14 +32,6 @@ db.open(function(err, db){
 	}
 });
 
-
-	/*
-	* checks every minute if an auction is expired.
-	* if that is the case the auction will be deleted from the allView
-	* and recreated in the completed view (until the seller deletes it)
-	*/
-
-
 var minutes = 1, the_interval = minutes * 60 * 1000;
 setInterval(function() {
 	var mongo = require('mongodb');
@@ -165,6 +157,54 @@ exports.logIn = function(req, res){
 	});
 };
 
+/*
+* signup
+*
+*/ 
+
+
+/*
+ * signUp
+ * inserts a new user document into the users collection
+ * userId is ID
+ * returns 201 if successful
+ * returns 409 if a conflict occurs
+ */
+exports.createUser = function(req, res) {
+    var user = req.body;
+
+    if(user.password === user.password){
+		db.collection('users', function(err, collection) {
+	    	collection.findOne({'username': {$eq: user.username}}, function(err, item){		
+	    		if(item == null){
+			      	
+					        collection.insert({'username': user.username, 'firstName': user.firstName, 'lastName': user.lastName, 'password': user.password, 'email' : user.email}, {safe:true}, function(err, result) {
+					        	if(err){
+					        		res.sendStatus(409);
+					        	}else{
+					        		res.sendStatus(201);
+					        	}
+					        });
+				  		
+	  				
+				}else{
+					res.sendStatus(409);
+				}
+
+    		});
+		});
+	}else{
+		res.sendStatus(409);
+	}
+
+	db.collection('logs', function(err, collection){
+		collection.insert({'date': Date(), 'origin': req.connection.remoteAddress, 'destination': 'signup', 'headers': req.headers, 'body': req.body}, function(err, result){
+			if(err){
+				console.log(err);
+			}
+		});
+	});
+}
 
 
 
