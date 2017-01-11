@@ -32,6 +32,10 @@ db.open(function(err, db){
 	}
 });
 
+db.authenticate("Daniel", "443273", function(err, res) {
+  // callback
+});
+
 var minutes = 1, the_interval = minutes * 60 * 1000;
 setInterval(function() {
 	var mongo = require('mongodb');
