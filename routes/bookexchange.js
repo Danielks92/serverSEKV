@@ -21,7 +21,7 @@ var mongo = require('mongodb');
 	/*
 	 * crypto stuff
 	 */
-	bcrypt = require('bcrypt-nodejs'),
+	bcrypt = require('bcrypt'),
 	crypto = require('crypto');
  	/*var app = express();
 	var db;
