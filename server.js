@@ -17,6 +17,7 @@ node_server.use(bodyParser.urlencoded({
 //interfaces for the clients
 node_server.post('/auction', bookexchange.createAuction);
 node_server.post('/auctionUpdate', bookexchange.updateCurrentPrice);
+node_server.post('/users', bookexchange.createUser);
 node_server.put('/users/logIn/:userId', bookexchange.logIn);
 node_server.get('/auction/all', bookexchange.getAllAuctions);
 node_server.get('/users', bookexchange.allUsers);
